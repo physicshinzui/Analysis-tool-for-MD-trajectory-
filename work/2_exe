@@ -1,0 +1,24 @@
+#!/bin/bash
+cat<<EOS
+###############################
+This program executes analysis.
+###############################
+
+EOS
+SECONDS=0
+echo "Begin (sec): " $SECONDS
+
+#Dont store in buffer
+./analysis.exe < nme_para.inp 2>&1 | cat > log
+
+echo "Execution have DONE"
+
+rm analysis.exe *.mod
+
+mv  output.dat ../../results/
+mv  q_dist.dat vcv_mat.dat each_dist.dat proj.dist ../../results/
+mv  log in_pdb.log  ../../results/
+mv  fort* ../../results/
+
+echo "End (sec): " $SECONDS
+

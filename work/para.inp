@@ -1,0 +1,161 @@
+NO       ; Do you output all trajectories as pdb?
+4        ; the no. of ensembles
+"/Volumes/data_shinji/p53CTD_singl_dat/01_NonAcHis+_md9/md9/n1/all_md.pdb"       ; ref 1
+"/Volumes/data_shinji/p53CTD_singl_dat/02_AcHis+_md9/md10/n1/all_md.pdb"         ; ref 2
+"/Volumes/data_shinji/p53CTD_singl_dat/03_NonAcHisNeutral_md9/md9/n1/all_md.pdb" ; ref 3
+"/Volumes/data_shinji/p53CTD_singl_dat/04_AcHisNeutral_md9/md9/n1/all_md.pdb"    ; ref 4
+"target_mols_RMSD/cbp_new_0820.pdb"                ; target
+1                                                  ; The no. of PDB files for projection on PC space 
+"target_mols_RMSD/p53CTD_tpl.pdb"                  ; projected PDB on PC space
+49.27155D0 49.27155D0 49.27155D0                        ; cell size 1
+49.23298D0 49.23298D0 49.23298D0                        ; cell size 2
+49.13128D0 49.13128D0 49.13128D0                        ; cell size 3
+49.21507D0 49.21507D0 49.21507D0                        ; cell size 4
+190  1          ; Target residue atom number & no of pairs for it
+298             ; atom number of each residue for end to end calc
+190  298        ; The range of atoms for end to end dist. calc. 
+BB              ; RMSD type 
+CA              ; PCA type
+10 16           ; Fitting region of ref 1 for RMSD
+10 16           ; Fitting region of ref 2 for RMSD
+10 16           ; Fitting region of ref 3 for RMSD
+10 16           ; Fitting region of ref 4 for RMSD
+2  18           ; Fitting region of ref 1 for VCV
+2  18           ; Fitting region of ref 2 for VCV
+2  18           ; Fitting region of ref 3 for VCV
+2  18           ; Fitting region of ref 4 for VCV
+14 20           ; The range of residues of tag for RMSD calc.  
+2  18           ; The range of residues of a PDB which will be projected on PC space.
+"../../../p53_p_cano/1_p_cano_NonAc_His+/P_E_T300.dat"        ; PDF data 1
+"../../../p53_p_cano/2_p_cano_Ac_His+/P_E_T300.dat"           ; PDF data 2
+"../../../p53_p_cano/3_p_cano_NonAc_HIS_Neutral/P_E_T300.dat" ; PDF data 3
+"../../../p53_p_cano/4_p_cano_AcHIS_Neutral/P_E_T300.dat"     ; PDF data 4
+32  32  32  32      ; The no. of files of trajectory 
+"/Volumes/data_shinji/p53CTD_singl_dat/01_NonAcHis+_md9/md9/n1/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/01_NonAcHis+_md9/md9/n2/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/01_NonAcHis+_md9/md9/n3/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/01_NonAcHis+_md9/md9/n4/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/01_NonAcHis+_md9/md9/n5/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/01_NonAcHis+_md9/md9/n6/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/01_NonAcHis+_md9/md9/n7/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/01_NonAcHis+_md9/md9/n8/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/01_NonAcHis+_md9/md9/n9/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/01_NonAcHis+_md9/md9/n10/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/01_NonAcHis+_md9/md9/n11/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/01_NonAcHis+_md9/md9/n12/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/01_NonAcHis+_md9/md9/n13/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/01_NonAcHis+_md9/md9/n14/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/01_NonAcHis+_md9/md9/n15/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/01_NonAcHis+_md9/md9/n16/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/01_NonAcHis+_md9/md9/n17/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/01_NonAcHis+_md9/md9/n18/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/01_NonAcHis+_md9/md9/n19/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/01_NonAcHis+_md9/md9/n20/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/01_NonAcHis+_md9/md9/n21/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/01_NonAcHis+_md9/md9/n22/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/01_NonAcHis+_md9/md9/n23/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/01_NonAcHis+_md9/md9/n24/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/01_NonAcHis+_md9/md9/n25/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/01_NonAcHis+_md9/md9/n26/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/01_NonAcHis+_md9/md9/n27/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/01_NonAcHis+_md9/md9/n28/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/01_NonAcHis+_md9/md9/n29/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/01_NonAcHis+_md9/md9/n30/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/01_NonAcHis+_md9/md9/n31/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/01_NonAcHis+_md9/md9/n32/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/02_AcHis+_md9/md10/n1/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/02_AcHis+_md9/md10/n2/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/02_AcHis+_md9/md10/n3/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/02_AcHis+_md9/md10/n4/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/02_AcHis+_md9/md10/n5/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/02_AcHis+_md9/md10/n6/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/02_AcHis+_md9/md10/n7/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/02_AcHis+_md9/md10/n8/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/02_AcHis+_md9/md10/n9/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/02_AcHis+_md9/md10/n10/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/02_AcHis+_md9/md10/n11/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/02_AcHis+_md9/md10/n12/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/02_AcHis+_md9/md10/n13/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/02_AcHis+_md9/md10/n14/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/02_AcHis+_md9/md10/n15/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/02_AcHis+_md9/md10/n16/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/02_AcHis+_md9/md10/n17/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/02_AcHis+_md9/md10/n18/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/02_AcHis+_md9/md10/n19/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/02_AcHis+_md9/md10/n20/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/02_AcHis+_md9/md10/n21/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/02_AcHis+_md9/md10/n22/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/02_AcHis+_md9/md10/n23/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/02_AcHis+_md9/md10/n24/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/02_AcHis+_md9/md10/n25/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/02_AcHis+_md9/md10/n26/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/02_AcHis+_md9/md10/n27/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/02_AcHis+_md9/md10/n28/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/02_AcHis+_md9/md10/n29/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/02_AcHis+_md9/md10/n30/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/02_AcHis+_md9/md10/n31/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/02_AcHis+_md9/md10/n32/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/03_NonAcHisNeutral_md9/md9/n1/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/03_NonAcHisNeutral_md9/md9/n2/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/03_NonAcHisNeutral_md9/md9/n3/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/03_NonAcHisNeutral_md9/md9/n4/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/03_NonAcHisNeutral_md9/md9/n5/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/03_NonAcHisNeutral_md9/md9/n6/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/03_NonAcHisNeutral_md9/md9/n7/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/03_NonAcHisNeutral_md9/md9/n8/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/03_NonAcHisNeutral_md9/md9/n9/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/03_NonAcHisNeutral_md9/md9/n10/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/03_NonAcHisNeutral_md9/md9/n11/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/03_NonAcHisNeutral_md9/md9/n12/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/03_NonAcHisNeutral_md9/md9/n13/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/03_NonAcHisNeutral_md9/md9/n14/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/03_NonAcHisNeutral_md9/md9/n15/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/03_NonAcHisNeutral_md9/md9/n16/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/03_NonAcHisNeutral_md9/md9/n17/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/03_NonAcHisNeutral_md9/md9/n18/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/03_NonAcHisNeutral_md9/md9/n19/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/03_NonAcHisNeutral_md9/md9/n20/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/03_NonAcHisNeutral_md9/md9/n21/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/03_NonAcHisNeutral_md9/md9/n22/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/03_NonAcHisNeutral_md9/md9/n23/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/03_NonAcHisNeutral_md9/md9/n24/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/03_NonAcHisNeutral_md9/md9/n25/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/03_NonAcHisNeutral_md9/md9/n26/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/03_NonAcHisNeutral_md9/md9/n27/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/03_NonAcHisNeutral_md9/md9/n28/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/03_NonAcHisNeutral_md9/md9/n29/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/03_NonAcHisNeutral_md9/md9/n30/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/03_NonAcHisNeutral_md9/md9/n31/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/03_NonAcHisNeutral_md9/md9/n32/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/04_AcHisNeutral_md9/md9/n1/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/04_AcHisNeutral_md9/md9/n2/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/04_AcHisNeutral_md9/md9/n3/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/04_AcHisNeutral_md9/md9/n4/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/04_AcHisNeutral_md9/md9/n5/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/04_AcHisNeutral_md9/md9/n6/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/04_AcHisNeutral_md9/md9/n7/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/04_AcHisNeutral_md9/md9/n8/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/04_AcHisNeutral_md9/md9/n9/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/04_AcHisNeutral_md9/md9/n10/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/04_AcHisNeutral_md9/md9/n11/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/04_AcHisNeutral_md9/md9/n12/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/04_AcHisNeutral_md9/md9/n13/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/04_AcHisNeutral_md9/md9/n14/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/04_AcHisNeutral_md9/md9/n15/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/04_AcHisNeutral_md9/md9/n16/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/04_AcHisNeutral_md9/md9/n17/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/04_AcHisNeutral_md9/md9/n18/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/04_AcHisNeutral_md9/md9/n19/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/04_AcHisNeutral_md9/md9/n20/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/04_AcHisNeutral_md9/md9/n21/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/04_AcHisNeutral_md9/md9/n22/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/04_AcHisNeutral_md9/md9/n23/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/04_AcHisNeutral_md9/md9/n24/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/04_AcHisNeutral_md9/md9/n25/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/04_AcHisNeutral_md9/md9/n26/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/04_AcHisNeutral_md9/md9/n27/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/04_AcHisNeutral_md9/md9/n28/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/04_AcHisNeutral_md9/md9/n29/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/04_AcHisNeutral_md9/md9/n30/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/04_AcHisNeutral_md9/md9/n31/all.cod"
+"/Volumes/data_shinji/p53CTD_singl_dat/04_AcHisNeutral_md9/md9/n32/all.cod"
