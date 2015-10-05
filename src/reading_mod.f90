@@ -359,7 +359,7 @@ contains
     use Read_Assign_PDF
     use vcv_mod
     use periodic
-    integer :: i, j, ii, iii
+    integer :: i, j, ii, iii, ios
     character(len=126) :: blnk=""
     integer,           intent(in) :: TotAtoms, ProteinAtoms, tot_confs
     integer, intent(inout) :: iconfs
@@ -444,20 +444,22 @@ contains
     open(62,          file = "vcv_mat.dat")
 
     allocate(tmp_x(TotAtoms),tmp_y(TotAtoms),tmp_z(TotAtoms) )
-    !allocate(tmp_x(size(trj_x,1)), tmp_y(size(trj_y,1)), tmp_z(size(trj_z,1)))
     tmp_x(:) = 0.0d0
     tmp_y(:) = 0.0d0
     tmp_z(:) = 0.0d0
 
-    print*,"TotAtoms", TotAtoms
+    print*," Total Atoms:", TotAtoms
 
 !***Read data in trajectry file
-   
-    !write(UnitOut,'("#Conf.No.",6x,"#RMSD",20x,"#Potential",8x,"#End-to-End",15x,"#Probability")')
+    ios = 0
     do i = 1, tot_confs
       read(UnitTrjFile) istp,sitime,sec,et,kinetic,temperature,&
                         potential,rmsf,iyn15v,iyn15h,rmsd
-      read(UnitTrjFile) (trj_x(j), trj_y(j), trj_z(j), j = 1,TotAtoms)
+      read(UnitTrjFile, iostat=ios) (trj_x(j), trj_y(j), trj_z(j), j = 1, TotAtoms)
+      if (ios > 0) then 
+          print*,"NOTE) Error in reading trajectry file occurs. Iostat is positive:",ios
+          stop
+      endif
 
       iconfs = iconfs + 1
       print*,""
