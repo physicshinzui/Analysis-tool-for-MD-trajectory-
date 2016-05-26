@@ -66,9 +66,7 @@ contains
     real(4), intent(in)  :: potential
     real(4)              :: MultProb
     real(8), intent(out) :: prob
-!    print*,"Ndata,enePDF,pdf",NdataPDF, Nconf!enePDF(1564),pdf(1564)
 
-    !do i = 1,nbin - 1
     do i = 1, NdataPDF - 1
       if(potential >= enePDF(i) .and. potential < enePDF(i+1)) then 
         MultProb = pdf(i) + pdf(i+1)
@@ -81,10 +79,5 @@ contains
         exit
       endif
     enddo
-
-
   end subroutine
-
-
-
 end module

@@ -433,9 +433,15 @@ contains
     integer :: atom_pair_ete(2)
     integer :: unit_out
 
+    integer :: No_of_chains
+
     !***
     character(len=130) :: fill_outpdbs
     character(len=3) :: judge_output_pdb
+
+    !@@@For Rg which is a measure of hydrophobic core 
+    real(8) :: HB_coord(19,3)
+    !real(8) :: HB_coord(5,3)
 
     open(UnitTrjFile, file = FileName, status="old",access="sequential",form="unformatted")
     open(UnitOut,     file = "output.dat")
@@ -465,7 +471,10 @@ contains
       print*,""
       write(*,'("#Number of conformation ",i8)') iconfs
 
-      call ReturnAtom(TotAtoms,1,first_atom,last_atom,total_residues,trj_x,trj_y,trj_z,cell)
+      No_of_chains = 1   !For p53 
+      !No_of_chains = 2   !For ET1 system
+      call ReturnAtom(TotAtoms,No_of_chains,first_atom,last_atom,total_residues,trj_x,trj_y,trj_z,cell)
+      print*, "aaa"
 
       !***Aim to making a structure possess a probability***
       call AssignPDF(NdataPDF,enepdf,pdf,potential,prob) 
@@ -479,11 +488,90 @@ contains
         tmp_z(j) = trj_z(j)
       enddo
 
-      call Calc_CenterMass(ProteinAtoms,tmp_x,tmp_y,tmp_z,COM_trj)
-      write(*,'("Center Of Mass (protein) [A]       : ",3f8.3)') COM_trj
+      !call Calc_CenterMass(ProteinAtoms,tmp_x,tmp_y,tmp_z,COM_trj)
+   !   print*,"Function COM =", COM(tmp_x,tmp_y,tmp_z)
+    !  write(*,'("Center Of Mass (protein) [A]       : ",3f8.3)') COM_trj
+
     
-      call Calc_RadiusOfGyration(ProteinAtoms,tmp_x,tmp_y,tmp_z,COM_trj,Rg_trj)
-      write(*,'("Radius of gyration (protein)       : ", f10.3)') sqrt(Rg_trj)
+!      call Calc_RadiusOfGyration(ProteinAtoms,tmp_x,tmp_y,tmp_z,COM_trj,Rg_trj)
+!      write(*,'("Radius of gyration (protein)       : ", f10.3)') Rg_trj
+
+      !@@@@
+      HB_coord(:,:) = 0.0
+      !***not used FOr Ac H+
+      !HB_coord(1,:) = (/ tmp_x(139), tmp_y(139), tmp_z(139) /)
+      !HB_coord(2,:) = (/ tmp_x(179), tmp_y(179), tmp_z(179) /)
+      !HB_coord(3,:) = (/ tmp_x(205), tmp_y(205), tmp_z(205) /)
+      !HB_coord(4,:) = (/ tmp_x(224), tmp_y(224), tmp_z(224) /)
+      !HB_coord(5,:) = (/ tmp_x(241), tmp_y(241), tmp_z(241) /)
+
+      !***Common atoms
+      HB_coord(1,:) = (/ tmp_x(11), tmp_y(11), tmp_z(11) /)
+      HB_coord(2,:) = (/ tmp_x(14), tmp_y(14), tmp_z(14) /)
+      HB_coord(3,:) = (/ tmp_x(17), tmp_y(17), tmp_z(17) /)
+      HB_coord(4,:) = (/ tmp_x(33), tmp_y(33), tmp_z(33) /)
+      HB_coord(5,:) = (/ tmp_x(36), tmp_y(36), tmp_z(36) /)
+      HB_coord(6,:) = (/ tmp_x(39), tmp_y(39), tmp_z(39) /)
+      HB_coord(7,:) = (/ tmp_x(139), tmp_y(139), tmp_z(139) /)
+
+      !***NonAc(H+) & Ac(H+)
+      !HB_coord(8,:) = (/ tmp_x(157), tmp_y(157), tmp_z(157) /)
+      !HB_coord(9,:) = (/ tmp_x(160), tmp_y(160), tmp_z(160) /)
+      !HB_coord(10,:) = (/ tmp_x(163), tmp_y(163), tmp_z(163) /)
+      !HB_coord(11,:) = (/ tmp_x(179), tmp_y(179), tmp_z(179) /)
+      !HB_coord(12,:) = (/ tmp_x(182), tmp_y(182), tmp_z(182) /)
+      !HB_coord(13,:) = (/ tmp_x(185), tmp_y(185), tmp_z(185) /)
+
+      !***NonAc(H+)
+      !HB_coord(14,:) = (/ tmp_x(201), tmp_y(201), tmp_z(201) /)
+      !HB_coord(15,:) = (/ tmp_x(220), tmp_y(220), tmp_z(220) /)
+      !HB_coord(16,:) = (/ tmp_x(237), tmp_y(237), tmp_z(237) /)
+      !HB_coord(17,:) = (/ tmp_x(257), tmp_y(257), tmp_z(257) /)
+      !HB_coord(18,:) = (/ tmp_x(260), tmp_y(260), tmp_z(260) /)
+      !HB_coord(19,:) = (/ tmp_x(263), tmp_y(263), tmp_z(263) /)
+
+      !***Ac(H+)
+      !HB_coord(14,:) = (/ tmp_x(205), tmp_y(205), tmp_z(205) /)
+      !HB_coord(15,:) = (/ tmp_x(224), tmp_y(224), tmp_z(224) /)
+      !HB_coord(16,:) = (/ tmp_x(241), tmp_y(241), tmp_z(241) /)
+      !HB_coord(17,:) = (/ tmp_x(261), tmp_y(261), tmp_z(261) /)
+      !HB_coord(18,:) = (/ tmp_x(264), tmp_y(264), tmp_z(264) /)
+      !HB_coord(19,:) = (/ tmp_x(267), tmp_y(267), tmp_z(267) /)
+
+      !***NonAc & Ac
+      HB_coord(8,:) = (/ tmp_x(156), tmp_y(156), tmp_z(156) /)
+      HB_coord(9,:) = (/ tmp_x(159), tmp_y(159), tmp_z(159) /)
+      HB_coord(10,:) = (/ tmp_x(162), tmp_y(162), tmp_z(162) /)
+      HB_coord(11,:) = (/ tmp_x(178), tmp_y(178), tmp_z(178) /)
+      HB_coord(12,:) = (/ tmp_x(181), tmp_y(181), tmp_z(181) /)
+      HB_coord(13,:) = (/ tmp_x(184), tmp_y(184), tmp_z(184) /)
+
+      !***NonAc
+      !HB_coord(14,:) = (/ tmp_x(200), tmp_y(200), tmp_z(200) /)
+      !HB_coord(15,:) = (/ tmp_x(219), tmp_y(219), tmp_z(219) /)
+      !HB_coord(16,:) = (/ tmp_x(236), tmp_y(236), tmp_z(236) /)
+      !HB_coord(17,:) = (/ tmp_x(256), tmp_y(256), tmp_z(256) /)
+      !HB_coord(18,:) = (/ tmp_x(259), tmp_y(259), tmp_z(259) /)
+      !HB_coord(19,:) = (/ tmp_x(262), tmp_y(262), tmp_z(262) /)
+
+      !***Ac
+      HB_coord(14,:) = (/ tmp_x(204), tmp_y(204), tmp_z(204) /)
+      HB_coord(15,:) = (/ tmp_x(223), tmp_y(223), tmp_z(223) /)
+      HB_coord(16,:) = (/ tmp_x(240), tmp_y(240), tmp_z(240) /)
+      HB_coord(17,:) = (/ tmp_x(260), tmp_y(260), tmp_z(260) /)
+      HB_coord(18,:) = (/ tmp_x(263), tmp_y(263), tmp_z(263) /)
+      HB_coord(19,:) = (/ tmp_x(266), tmp_y(266), tmp_z(266) /)
+
+      !do j = 1, 5! 19
+      !  write(321,'(3f10.3)') HB_coord(j,:)
+      !enddo
+      call Calc_CenterMass(19,HB_coord(:,1),HB_coord(:,2),HB_coord(:,3),COM_trj)
+      call Calc_RadiusOfGyration(19,HB_coord(:,1),HB_coord(:,2),HB_coord(:,3),COM_trj,Rg_trj)
+      !call Calc_CenterMass(5,HB_coord(:,1),HB_coord(:,2),HB_coord(:,3),COM_trj)
+      !call Calc_RadiusOfGyration(5,HB_coord(:,1),HB_coord(:,2),HB_coord(:,3),COM_trj,Rg_trj)
+      write(321, *) Rg_trj, prob  
+      !stop
+      !@@@@
 
       !@@@ New line. Aug 13
       unit_out = 1001
@@ -561,53 +649,49 @@ contains
       call CalcRMSD(NumAtmsForRmsd, RotMat, TrjCoordForRmsd, CoordForRmsd, RmsdVal)
       write(*,'("RMSD                               : ",f10.3," [A]")') RmsdVal
 
-!***VCV part
+
+!---Making variance-covariance matrix from here---
 
 !***Save the coordinates used in the calc. of variance-covariance matrix
-      !if (prob >= 0.2 .and. prob <= 1.0) then
+!      if (prob >= 0.2 .and. prob <= 1.0) then !***Pick only conformations at a certain T 
 
             do ii = 1, NumAtmsForVCV
               TrjDistForVCV(1,ii) = tmp_x(Ref_AtomNumForVCV(ii))
               TrjDistForVCV(2,ii) = tmp_y(Ref_AtomNumForVCV(ii))
               TrjDistForVCV(3,ii) = tmp_z(Ref_AtomNumForVCV(ii))
-      !        print*,"specified atom no. in Dist. calc.: ", Ref_AtomNumForVCV(ii) 
             enddo
-      
       
       !(1) Save distances betw. atom pairs
             if (.not. allocated(DistsOfPair)) allocate(DistsOfPair(Npairs))
       
-            !***modified line at Sep 28 2015
             call SaveDist(NumAtmsForVCV, & 
                           Npairs,Ref_AtomNumForVCV, &
                           TrjDistForVCV(1,:), &
                           TrjDistForVCV(2,:), & 
                           TrjDistForVCV(3,:), & 
                           DistsOfPair)
-            !???This is bug! I removed Sep 28 2015
-            !call SaveDist(NumAtmsForVCV,Npairs,Ref_AtomNumForVCV, &
-            !              TrjCoordForRmsd(1,:),TrjCoordForRmsd(2,:),TrjCoordForRmsd(3,:),DistsOfPair)
       
-            write(74,*) i, prob
+            write(74,*) iconfs, prob
             write(74,*) (DistsOfPair(j), j = 1, Npairs)
       
       !(2) Make terms of Variance-Covariance Matrix 
             call MakeTermsOfVCV(prob,Npairs,DistsOfPair,q,qq)
       
-       ! else
-       !     print*,"Not picked. conf.NO= ", iconfs, "Probability= ", prob
-       ! endif
+!      else
+!        print*,"Not picked. conf.NO= ", iconfs, "Probability= ", prob
+!      endif
       
-        !***Aim at generating PDBs to execute dssp analysis***
+        !***Aim at generating PDBs
+        ios = 0
         select case(judge_output_pdb)
           case("YES")
             !The lower write line are temporary. this should be rewritten.2015/7/24
-            !write(fill_outpdbs, & 
-            !'("/Volumes/data_shinji/p53CTD_singl_dat/01_NonAcHis+_md9/PDBs/",i6.6,".pdb")') iconfs 
-            !write(fill_outpdbs, '("../PDBsFordssp/",i6.6,".pdb")') iconfs 
+            write(fill_outpdbs, & 
+            '("/Volumes/data_shinji/Endth_dat/TestPDBs/",i6.6,".pdb")') iconfs 
   
-            print*,"fill_outpdbs=",fill_outpdbs
-            open(10, file = fill_outpdbs)
+            print*," Output PDB name: ",fill_outpdbs
+            open(10, file = fill_outpdbs, iostat=ios)
+            if (ios > 0) stop "error"
             write(10,"('MODEL', i7)") iconfs
             write(10,"('# RMSD value: ',f10.3)") RmsdVal
             do j = 1, ProteinAtoms 
@@ -623,20 +707,19 @@ contains
             enddo
             write(10,"(a6)") "ENDMDL"
             close(10)
+
   
           case("NO")
             !PDBs are not outputted 
         end select 
         !*****************************************************
 
-        write(UnitOut,*) iconfs, RmsdVal, potential, ETE_trj, prob
+        write(UnitOut,*) iconfs, RmsdVal, potential, ETE_trj, Rg_trj, prob
     enddo!Finish reading
     write(*,'("#####END#####")') 
 
     deallocate(tmp_x,tmp_y,tmp_z)
     close(UnitTrjFile)
-    !close(UnitOut)
-    !close(1212)
 
   end subroutine
 !------------------------------------------------------

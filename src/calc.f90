@@ -16,10 +16,22 @@ contains
     CenterOfMass(1) = SumX/n
     CenterOfMass(2) = SumY/n
     CenterOfMass(3) = SumZ/n
-    !CenterOfMass(1) = SumX/dble(n)
-    !CenterOfMass(2) = SumY/dble(n)
-    !CenterOfMass(3) = SumZ/dble(n)
   end subroutine
+
+  function COM(x,y,z) 
+    integer :: NoOfData 
+    real(8) :: COM(3)
+    real(8),intent(in)  :: x(:),y(:),z(:)
+    real(8) :: SumX,SumY,SumZ 
+    NoOfData = size(x)
+    SumX = sum(x) 
+    SumY = sum(y) 
+    SumZ = sum(z) 
+    COM(1) = SumX/NoOfData
+    COM(2) = SumY/NoOfData
+    COM(3) = SumZ/NoOfData
+  end function 
+
   !------------------------------
   !------------------------------
   subroutine Move_COM_to_origin(n,x,y,z,CenterOfMass)
@@ -39,7 +51,7 @@ contains
   !------------------------------
 
   !------------------------------
-  subroutine Calc_RadiusOfGyration(n,x,y,z,COM,Rg)
+  subroutine Calc_RadiusOfGyration(n,x,y,z,COM, Rg)
   !  1st(INPUT) : N of atoms 
   !  5th(INPUT) : center of mass
   !  6th(OUTPUT): Radius of gyration
@@ -58,18 +70,19 @@ contains
   ytmp(:) = 0.0d0
   ztmp(:) = 0.0d0
 
-  !(1) COM is subtructed from each coordinate (r - r_av) 
+  !(1) COM is subtructed from each coordinate (r - <r>) 
   xtmp(:) = x(:) - COM(1)
   ytmp(:) = y(:) - COM(2)
   ztmp(:) = z(:) - COM(3)
 
-  !(2) ∑(ri - r_av)^2
+  !(2) ∑ _i^Natom (ri - <r>)^2
   do i = 1, n  
     Rg = Rg + xtmp(i)**2 + ytmp(i)**2 + ztmp(i)**2
   enddo
 
-  !(3) 1/N ∑(ri - r_av)^2
-  Rg = Rg / n
+
+  !(3) 1/N \sigma(ri - r_av)^2
+  Rg = sqrt(Rg/n)
 
   call cpu_time(tf)
 

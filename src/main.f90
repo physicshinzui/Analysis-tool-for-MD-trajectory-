@@ -479,7 +479,7 @@ program main
   enddo
 
 !***Calculation of the number of atom pairs that is used in VCV calc.*** 
-  Npairs = N_VCVAtomsRef(1) * (N_VCVAtomsRef(1) - 1) * 0.5 
+  Npairs = ( N_VCVAtomsRef(1) * (N_VCVAtomsRef(1) - 1) ) * 0.5 
   print*,"   *The no. of atom pairs of Ref. : ", Npairs
 !*********************************************************************** 
 
@@ -602,9 +602,7 @@ program main
 
 
         allocate(AtomNums_for_plt(N_AtomsPlt), x_proj(N_AtomsPlt), y_proj(N_AtomsPlt), z_proj(N_AtomsPlt))
-        !@@@
         AtomNums_for_plt(:) = 0
-        !@@@
 
         call SaveAtomNumForRmsd(PCA_Type,RegionCalc_proj,N_AtomsPlt ,NumOfAtomsOfPlt(i),AtomNameOfPlt, AtomNumOfPlt,&
                                 ResNameOfPlt,ResNumOfPlt,AtomNums_for_plt)
@@ -621,18 +619,10 @@ program main
         print*,"   *Atom pairs of a PDB projected on PC space :",Npair_plt
 
 !***SAVING DISTANCES BETW. THE ATOM PAIRS***
-!@@@@
         allocate(DistsOfPair_plt(Npair_plt))
-!@@@@
         call SaveDist(N_AtomsPlt, Npair_plt, AtomNums_for_plt, &
                       x_proj,y_proj,z_proj,DistsOfPair_plt)
 !*******************************************
-
-        !print*,"x_proj(2), x_proj(1): ", x_proj(3), x_proj(1) 
-        !print*, sqrt( (x_proj(3) - x_proj(1)) **2 &
-        !     +(y_proj(3) - y_proj(1)) **2 &
-        !     +(z_proj(3) - z_proj(1)) **2) 
-        !stop
 
 !***WRITE THE DISTANCES***
         open(123, file = "proj.dist")
@@ -641,7 +631,6 @@ program main
 !*************************
       enddo
    end select
-
 
 !***CHECKING WHETHER RESIDUE NAME CORRESPONDS OR NOT***
   count_for_error = 0
@@ -668,6 +657,8 @@ program main
     endif
   enddo
 !******************************************************
+
+
 
 !-----For trajectory-----
   allocate(q(Npairs),qq(Npairs,Npairs),vcv(Npairs,Npairs))
@@ -709,7 +700,6 @@ program main
 
   allocate(trj_x(more_max_Natoms),trj_y(more_max_Natoms),trj_z(more_max_Natoms))
 
-!@@@
   iconfs = 0
 
   do iEnsmbl = 1, No_of_ensembles 
@@ -742,31 +732,15 @@ program main
                               Npairs, q, qq, vcv, & 
                               atm_no_ete, targt_rsidu_atom, npair_for_targt_rsidu_atom)
     enddo
+    !@@@This is the sign for pinoint where the end of conformation no. for each is.
+    !write(74,"('Reading of ',i2,'th ensenmble ends.')"), iEnsmbl
+    !@@@
   enddo
 
   write(*,'("Total Prob = ", f16.3)') TotalProb
 
-  !***I removed at 2015-9-30
-  !do i = 1, Npairs
-  !  q(i) = q(i) + DistsOfPair_plt(i)
-  !enddo
-  !do i = 1, Npairs
-  !  do j = 1, Npairs
-  !    qq(j,i) = qq(j,i) + DistsOfPair_plt(j) * DistsOfPair_plt(i)
-  !  enddo
-  !enddo
-  !print*,"Total confs + confs projected on PC space:",iconfs + NoOfPlt
-
-  !***Normalization of <q> and <qq> by sum of whole probabilities of each ensemble 
-  !***modifyded on 2015-9-20
-  !***Averaged distances
-  !q(:)    = q(:) / (iconfs + NoOfPlt) 
-  !qq(:,:) = qq(:,:) / (iconfs + NoOfPlt)
-
-  !@@@
   q(:)    = q(:) / TotalProb  
   qq(:,:) = qq(:,:) / TotalProb
-  !@@@
   !******************************************************************************** 
 
   call MakeVCV(Npairs,q,qq,vcv) !vcv is output 

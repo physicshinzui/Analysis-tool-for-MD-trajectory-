@@ -2,7 +2,6 @@ module vcv_mod
   implicit none
 contains
 
-
 !------------------------------------------
   subroutine SaveDist(n,Npairs,AtmNums,x,y,z,DistsOfPair)
     integer,              intent(in)  :: n
@@ -38,14 +37,16 @@ contains
 !------------------------------------------
 !------------------------------------------
   subroutine MakeTermsOfVCV(prob,Npairs, DistsOfPair,q,qq)
+  !Memo:
+  !    q and qq are updated iteratively.
     real(8), intent(in)    :: prob
     integer, intent(in)    :: Npairs
     real(8), intent(in)    :: DistsOfPair(Npairs) 
-    real(8), intent(inout) :: q(Npairs),qq(Npairs,Npairs) !Iterative update
+    real(8), intent(inout) :: q(Npairs),qq(Npairs,Npairs) 
     integer :: i, j, k
     integer :: icount
 
-    !<q>
+    !<q_i>
     do i = 1, Npairs
         !q(i) = q(i) + DistsOfPair(i) 
         q(i) = q(i) + prob * DistsOfPair(i) 
@@ -73,7 +74,6 @@ contains
         vcv(j,i) = qq(j,i) - q(j) * q(i)
       enddo
     enddo
-    !print*,vcv(1,2),": ",qq(1,2), q(1)*q(2)
   end subroutine
 !------------------------------------------
 !------------------------------------------

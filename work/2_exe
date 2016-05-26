@@ -6,19 +6,30 @@ This program executes analysis.
 
 EOS
 SECONDS=0
+dir="../../results/"
+
 echo "Begin (sec): " $SECONDS
 
 #Dont store in buffer
-./analysis.exe < nme_para.inp 2>&1 | cat > log
+#../src/shinchan.exe <nme_para.inp 2>&1 | cat > log
+#./analysis.exe <nme_para.inp 2>&1 | cat > log
+#./analysis.exe < para_ET1.inp 2>&1 | cat > log
+#./analysis.exe < para.inp 2>&1 | cat > log
+
+#./analysis.exe < para_01_NonAcH+.inp 2>&1 | cat > log
+#./analysis.exe < para_02_AcH+.inp 2>&1 | cat > log
+#./analysis.exe < para_03_NonAc.inp 2>&1 | cat > log
+./analysis.exe < para_04_Ac.inp 2>&1 | cat > log
 
 echo "Execution have DONE"
 
 rm analysis.exe *.mod
 
-mv  output.dat ../../results/
-mv  q_dist.dat vcv_mat.dat each_dist.dat proj.dist ../../results/
-mv  log in_pdb.log  ../../results/
-mv  fort* ../../results/
+mv  output.dat $dir 
+mv  q_dist.dat vcv_mat.dat each_dist.dat proj.dist $dir 
+mv  in_pdb.log  $dir 
+#mv  log in_pdb.log  $dir 
+#mv  fort* $dir 
 
 echo "End (sec): " $SECONDS
 

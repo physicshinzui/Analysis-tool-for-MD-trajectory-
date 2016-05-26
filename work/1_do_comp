@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+SECONDS=0
+echo "Begin (sec): " $SECONDS
 cat<<EOS
 
 ###################################
@@ -11,8 +13,8 @@ EOS
 
 echo "Compiling ..."
 #gfortran  -o analysis.exe \
-#gfortran  -O3 -o analysis.exe \
-gfortran  -pedantic -std=f95 -fbounds-check -O -Wuninitialized -ffpe-trap=invalid,zero,overflow -o analysis.exe \
+#gfortran  -pedantic -std=f95 -fbounds-check -O -Wuninitialized -ffpe-trap=invalid,zero,overflow -o analysis.exe \
+gfortran  -o analysis.exe \
           ../src/calc.f90 \
           ../src/rmsd_mod.f90 \
           ../src/PDF_Mod.f90 \
@@ -21,3 +23,4 @@ gfortran  -pedantic -std=f95 -fbounds-check -O -Wuninitialized -ffpe-trap=invali
           ../src/reading_mod.f90 \
           ../src/main.f90
 echo "###Compiling has been done.###"
+echo "END (sec): " $SECONDS

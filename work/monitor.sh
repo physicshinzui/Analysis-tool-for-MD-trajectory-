@@ -2,6 +2,7 @@
 set -e
 
 while [ -e ./output.dat ]; do
-  wc output.dat | awk '{print $1}'
-  sleep 0.5
+  echo -e "Progress (running now): `wc output.dat | awk '{print $1}'` \r\c"
+  sleep 1.0
 done
+

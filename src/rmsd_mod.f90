@@ -65,7 +65,6 @@ contains
         enddo
       enddo
     enddo
-!    print*,kaisuu,v
 !***Judgement of convergence
     apqmax = 0.0d0
     do p = 1, n-1
